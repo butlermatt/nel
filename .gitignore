@@ -1,2 +1,7 @@
+*~
+.project
+.buildlog
 packages
-pubspec.lock
+deploy
+build
+*.sublime-*
