@@ -1,6 +1,4 @@
-library nel.user;
-
-import 'nel_object.dart';
+part of nel.object;
 
 class User extends NelObject {
   String type = 'user';

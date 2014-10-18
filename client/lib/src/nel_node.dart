@@ -1,6 +1,4 @@
-library nel.node;
-
-import 'nel_object.dart';
+part of nel.object;
 
 class NelNode extends NelObject {
   String objId;

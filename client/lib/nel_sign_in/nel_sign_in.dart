@@ -5,7 +5,6 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_input.dart';
 import 'package:crypto/crypto.dart';
 
-import '../src/user.dart';
 import '../src/ajax.dart';
 import '../src/nel_object.dart';
 

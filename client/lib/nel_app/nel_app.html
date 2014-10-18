@@ -1,6 +1,7 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../../packages/polymer/polymer.html">
 <link rel="import" href="../nel_sign_in/nel_sign_in.html">
+<link rel="import" href="../nel_list/nel_list.html">
 
 <polymer-element name="nel-app">
   <template>
@@ -10,17 +11,21 @@
     }
     </style>
     <div layout horizontal center-justified id="container">
-      <template if="{{user == null}}">
+   <!--   <template if="{{user == null}}">
         <div layout vertical>
           <h1>Never Ending List</h1>
           <nel-sign-in on-signin="{{signedIn}}"></nel-sign-in>
         </div>
-      </template>
+      </template> -->
 
 
       <template if="{{user != null}}">
         <!-- TODO: it -->
+
       </template>
+
+      <nel-list model="{{node}}"></nel-list>
+
     </div>
   </template>
   <script type="application/dart" src="nel_app.dart"></script>

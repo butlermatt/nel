@@ -25,4 +25,20 @@ class Ajax {
         return new NelObject.fromJson(result);
     });
   }
+
+  Future getNode([String objId]) {
+    var url = '/node';
+    if(objId != null) url += '/$objId';
+    return HttpRequest.request(url, method: 'GET').then((HttpRequest req) {
+      var result = JSON.decode(req.responseText);
+      print('getNode response: $result');
+
+      if(result.containsKey('error')) {
+        var up = new NelException(result['error']);
+        throw up;
+      }
+
+      return new NelObject.fromJson(result);
+    });
+  }
 }

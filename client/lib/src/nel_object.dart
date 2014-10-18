@@ -1,6 +1,7 @@
 library nel.object;
 
-import 'user.dart';
+part 'user.dart';
+part 'nel_node.dart';
 
 abstract class NelObject {
   String objId;
@@ -14,6 +15,13 @@ abstract class NelObject {
     switch(ty) {
       case 'user':
         obj = new User(json['objId'], json['name'], json['email']);
+        break;
+      case 'node':
+        obj = new NelNode(json['objId'],
+            json['title'],
+            json['notes'],
+            json['parents'],
+            json['children']);
         break;
       default:
         throw new ArgumentError('Invalid NelObject type: $ty');
