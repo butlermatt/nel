@@ -11,4 +11,11 @@ class NelSignin extends Vane {
     data['success'] = 'Yes!';
     return close(data);
   }
+
+  @Route('', method: 'GET')
+  Future error() {
+    log.warning('Somone tried to browse to signin link');
+    write('That was bad!');
+    return close('That was bad!');
+  }
 }
