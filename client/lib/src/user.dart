@@ -13,6 +13,7 @@ class User extends NelObject {
 
   Map toJson() {
     var ret = {
+      'type' : type,
       'objId' : objId,
       'name' : name,
       'email' : email
