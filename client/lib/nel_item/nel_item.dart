@@ -30,6 +30,11 @@ class NelItem extends PolymerElement with Ajax {
     super.ready();
     DivElement titleDiv = $['title'];
     titleDiv.onKeyDown.listen(onTitleKeyDown);
+    titleDiv.onBlur.listen(onDivBlur);
+
+    DivElement notesDiv = $['notes'];
+    notesDiv.onKeyDown.listen(onNotesKeyDown);
+    notesDiv.onBlur.listen(onDivBlur);
   }
 
 
@@ -37,6 +42,7 @@ class NelItem extends PolymerElement with Ajax {
     if(event.keyCode == KeyCode.ENTER) { // TODO: Enter to create a new, same level bullet.
       event.preventDefault();
       $['title'].blur();
+      model.title = $['title'].text;
       if(event.ctrlKey == true) {
         // Ctrl+Enter focus on notes.
         print('Ctrl-enter hit!');
@@ -48,5 +54,23 @@ class NelItem extends PolymerElement with Ajax {
       }
     }
 
+  }
+
+  void onNotesKeyDown(KeyboardEvent event) {
+    if(event.keyCode == KeyCode.ENTER && event.ctrlKey == true) {
+      event.preventDefault();
+      $['notes'].blur();
+      model.notes = $['notes'].text;
+    }
+  }
+
+  void onDivBlur(Event event) {
+    var targ = event.target;
+    if(targ.id == 'notes') {
+      model.notes = targ.text.trim(); // TODO: need to replace new lines
+    } else if(targ.id == 'title') {
+      model.title = targ.text.trim();
+    }
+    print('Model updated: ${model.toJson()}');
   }
 }
