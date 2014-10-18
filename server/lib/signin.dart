@@ -16,6 +16,8 @@ class NelSignin extends Vane {
         .then((nelUser) {
         if(nelUser == null) {
           return close({'error' : 'Invalid username or password'});
+        } else {
+          return close(nelUser);
         }
       });
 
@@ -42,15 +44,15 @@ class NelSignin extends Vane {
                     .or(where.eq('email', json['email'])))
         .then((res) {
 
-        if(res != null) {
-          var error =  {};
-          if(res['name'] == json['name']) {
-            error['error'] = 'A user already exists with that name';
-          } else {
-            error['error'] = 'A user has already signed up with that email account';
+          if(res != null) {
+            var error =  {};
+            if(res['name'] == json['name']) {
+              error['error'] = 'A user already exists with that name';
+            } else {
+              error['error'] = 'A user has already signed up with that email account';
+            }
+            return close(error);
           }
-          return close(error);
-        }
       });
     });
 
