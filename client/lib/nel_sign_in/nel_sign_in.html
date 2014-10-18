@@ -1,0 +1,47 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../../packages/polymer/polymer.html">
+<link rel="import" href="../../../packages/paper_elements/paper_input.html">
+<link rel="import" href="../../../packages/paper_elements/paper_button.html">
+<link rel="import" href="../../../packages/paper_elements/paper_shadow.html">
+<link rel="import" href="../../../packages/core_elements/core_icon.html">
+<link rel="import" href="../../../packages/core_elements/core_icons.html">
+
+<polymer-element name="nel-sign-in">
+<template>
+<style>
+  paper-button[raised].colored {
+    color: #fff;
+    background-color: #c32712;
+  }
+  #box {
+    padding: 5px;
+  }
+
+  #newUser {
+    /* font-size: 10pt; */
+  }
+</style>
+  <div layout vertical around-justified id="box">
+    <template if="{{createNew}}">
+      Create new
+    </template>
+    <template if="{{!createNew}}">
+    <paper-input label="Username" floatingLabel></paper-input>
+    <paper-input label="Password" type="password"></paper-input>
+    <div layout horizontal around-justify>
+    <paper-button raised class="colored" on-click="{{signIn}}">
+      <core-icon icon="send"></core-icon>
+      Sign In
+    </paper-button>
+
+    <paper-button raised on-click="{{makeNew}}" id="newUser">
+      <core-icon icon="create"></core-icon>
+      New User
+    </paper-button>
+    </div>
+    <paper-shadow></paper-shadow>
+    </template>
+  </div>
+</template>
+<script type="application/dart" src="nel_sign_in.dart"></script>
+</polymer-element>

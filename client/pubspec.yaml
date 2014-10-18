@@ -5,6 +5,7 @@ description: Never Ending List - The Awesome Marcato Hackaton App.
 dependencies:
   browser: '>=0.10.0+2 <0.11.0'
   core_elements: any
+  crypto: any
   paper_elements: any
   polymer: any
 transformers:

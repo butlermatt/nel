@@ -1,22 +1,21 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../../packages/polymer/polymer.html">
+<link rel="import" href="../nel_sign_in/nel_sign_in.html">
 
-<polymer-element name="nel-app" attributes="count">
+<polymer-element name="nel-app">
   <template>
     <style>
-      div {
-        font-size: 24pt;
-        text-align: center;
-        margin-top: 140px;
-      }
-      button {
-        font-size: 24pt;
-        margin-bottom: 20px;
-      }
+    #container {
+      width: 100%;
+    }
     </style>
-    <div>
-      <button on-click="{{increment}}">Click me</button><br>
-      <span>(click count: {{count}})</span>
+    <div layout horizontal center-justified id="container">
+      <template if="{{user == null}}">
+        <div layout vertical>
+          <h1>Never Ending List</h1>
+          <nel-sign-in user="{{user}}"></nel-sign-in>
+        </div>
+      </template>
     </div>
   </template>
   <script type="application/dart" src="nel_app.dart"></script>

@@ -1,17 +1,15 @@
 import 'package:polymer/polymer.dart';
+import '../src/user.dart';
 
 /**
  * A Polymer click counter element.
  */
 @CustomTag('nel-app')
 class NelApp extends PolymerElement {
-  @published int count = 0;
+  User user;
 
   NelApp.created() : super.created() {
   }
 
-  void increment() {
-    count++;
-  }
 }
 
