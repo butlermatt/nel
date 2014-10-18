@@ -1,5 +1,9 @@
+library nel.server;
+
 import 'dart:async';
 import 'package:vane/vane.dart';
+
+part 'lib/signin.dart';
 
 @Route("/hello")
 class HelloWorld extends Vane {

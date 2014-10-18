@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:convert';
 
 import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_input.dart';
@@ -25,7 +26,11 @@ class NelSignIn extends PolymerElement {
 
   // Existing user sign-in
   void signIn() {
-    print(tmpUser.toJson());
+    var data = tmpUser.toJson();
+    HttpRequest.postFormData('/signin', data).then((HttpRequest req) {
+      var map = JSON.decode(req.responseText);
+      print(map);
+    });
   }
 
   // Toggle to create new user screen
