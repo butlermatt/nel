@@ -1,12 +1,14 @@
-class User {
-  String objId;
+import 'nel_object.dart';
+
+class User extends NelObject {
+  String type = 'user';
   String name;
   String email;
   String password;
 
-  User(this.objId, this.name, this.email);
-  User.empty() {
-    objId = name = email = password = '';
+  User(String objId, this.name, this.email) : super(objId);
+  User.empty() : super('') {
+    name = email = password = '';
   }
 
   Map toJson() {
