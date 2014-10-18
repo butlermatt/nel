@@ -1,4 +1,4 @@
-name: NEL
+name: nel
 version: 0.0.1
 author: Matthew Butler
 description: Never Ending List - The Awesome Marcato Hackaton App.
@@ -7,3 +7,6 @@ dependencies:
   core_elements: any
   paper_elements: any
   polymer: any
+transformers:
+- polymer:
+    entry_points: web/index.html
