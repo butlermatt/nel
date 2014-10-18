@@ -4,6 +4,7 @@ import 'dart:html';
 
 import 'package:polymer/polymer.dart';
 import '../src/user.dart';
+import '../src/nel_node.dart';
 
 /**
  * A Polymer click counter element.
@@ -11,6 +12,8 @@ import '../src/user.dart';
 @CustomTag('nel-app')
 class NelApp extends PolymerElement {
   @observable User user;
+
+  @observable List<NelNode> nelNodes;
 
   NelApp.created() : super.created() {
   }

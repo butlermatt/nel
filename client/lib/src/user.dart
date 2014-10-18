@@ -1,3 +1,5 @@
+library nel.user;
+
 import 'nel_object.dart';
 
 class User extends NelObject {
