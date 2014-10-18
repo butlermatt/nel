@@ -13,7 +13,7 @@
       <template if="{{user == null}}">
         <div layout vertical>
           <h1>Never Ending List</h1>
-          <nel-sign-in user="{{user}}"></nel-sign-in>
+          <nel-sign-in on-signin="{{signedIn}}"></nel-sign-in>
         </div>
       </template>
     </div>

@@ -15,7 +15,6 @@ import '../src/nel_object.dart';
 @CustomTag('nel-sign-in')
 class NelSignIn extends PolymerElement with Ajax {
   @observable bool createNew = false;
-  @published User user;
 
   @observable String pass1 = '';
   @observable String pass2 = '';
@@ -34,8 +33,8 @@ class NelSignIn extends PolymerElement with Ajax {
     var data = JSON.encode(tmpUser.toJson());
 
     send('/signin', tmpUser).then((res) {
-      print('signin/new received response: $res');
-      user = res;
+
+      fire('signin', detail: res);
     }).catchError((e) {
       statusMessage = e.message;
     }, test: (e) => e is NelException)
@@ -77,9 +76,7 @@ class NelSignIn extends PolymerElement with Ajax {
     if(!warn) {
       send('/signin/new', tmpUser).then((res) {
         print('signin/new received response: $res');
-        if(res is User) {
-          user = res;
-        }
+        fire('signin', detail: res);
       }).catchError((e) {
         statusMessage = e.message;
       }, test: (e) => e is NelException)

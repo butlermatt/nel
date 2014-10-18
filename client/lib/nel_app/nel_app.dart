@@ -1,3 +1,7 @@
+library nel.app;
+
+import 'dart:html';
+
 import 'package:polymer/polymer.dart';
 import '../src/user.dart';
 
@@ -6,9 +10,13 @@ import '../src/user.dart';
  */
 @CustomTag('nel-app')
 class NelApp extends PolymerElement {
-  User user;
+  @observable User user;
 
   NelApp.created() : super.created() {
+  }
+
+  void signedIn(Event e, var detail, Node node) {
+    user = detail;
   }
 
 }
