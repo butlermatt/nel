@@ -34,6 +34,7 @@ class NelSignIn extends PolymerElement with Ajax {
     var data = JSON.encode(tmpUser.toJson());
 
     send('/signin', tmpUser).then((res) {
+      print('signin/new received response: $res');
       if(res is User) {
         user = res;
       }
