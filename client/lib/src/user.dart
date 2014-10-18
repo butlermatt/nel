@@ -16,7 +16,7 @@ class User {
       'email' : email
     };
 
-    if(password != null || password.isNotEmpty) {
+    if(password != null && password.isNotEmpty) {
       ret['password'] = password;
     }
     return ret;
