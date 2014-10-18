@@ -17,6 +17,8 @@ class NelSignin extends Vane {
         if(nelUser == null) {
           return close({'error' : 'Invalid username or password'});
         } else {
+          var objId = nelUser.remove('_id');
+          nelUser['objId'] = objId;
           return close(nelUser);
         }
       });
@@ -52,6 +54,16 @@ class NelSignin extends Vane {
               error['error'] = 'A user has already signed up with that email account';
             }
             return close(error);
+          } else {
+            // No user returned. Now we can insert.
+            var map = json as Map;
+            map.remove('objId');
+            usrCol.insert(map);
+            usrCol.findOne(where.eq('name', map['name'])).then((usr) {
+              usr.remove('password');
+              log.info('Added user: $usr');
+              return close(usr);
+            });
           }
       });
     });
