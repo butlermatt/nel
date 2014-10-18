@@ -18,10 +18,4 @@ class NelList extends PolymerElement with Ajax {
     subItems = toObservable([]);
   }
 
-  void addNode() {
-    var contain = $['sublists'];
-
-    subItems.add(new NelNode.empty());
-
-  }
 }
