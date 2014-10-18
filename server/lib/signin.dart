@@ -18,7 +18,8 @@ class NelSignin extends Vane {
           return close({'error' : 'Invalid username or password'});
         } else {
           var objId = nelUser.remove('_id');
-          nelUser['objId'] = objId;
+          nelUser['objId'] = objId.toHexString();
+          nelUser.remove('password');
           return close(nelUser);
         }
       });
