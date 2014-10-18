@@ -26,8 +26,9 @@ class NelSignIn extends PolymerElement {
 
   // Existing user sign-in
   void signIn() {
+    var header = { 'Content-Type': 'application/json'};
     var data = JSON.encode(tmpUser.toJson());
-    HttpRequest.request('/signin', method: 'POST', sendData: data)
+    HttpRequest.request('/signin', method: 'POST', sendData: data, requestHeaders: header)
       .then((HttpRequest req) {
         var map = JSON.decode(req.responseText);
         print(map);
