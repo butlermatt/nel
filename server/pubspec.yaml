@@ -1,5 +1,6 @@
-name: server
-description: A simple Vane server
+name: NELServer
+version: 0.0.1
+author: Matthew Butler
+description: NEL Server for the Awesome Marcato Hackathon
 dependencies:
   vane: '>=0.6.0 <0.7.0'
-

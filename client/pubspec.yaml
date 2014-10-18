@@ -1,5 +1,9 @@
-name: client
-description: A simple application client
+name: NEL
+version: 0.0.1
+author: Matthew Butler
+description: Never Ending List - The Awesome Marcato Hackaton App.
 dependencies:
   browser: '>=0.10.0+2 <0.11.0'
-
+  core_elements: any
+  paper_elements: any
+  polymer: any
