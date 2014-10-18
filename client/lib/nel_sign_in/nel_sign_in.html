@@ -49,6 +49,12 @@
     </div>
     <paper-shadow></paper-shadow>
     </template>
+
+    <div flex>
+    <template if="{{statusMessage.isNotEmpty}}">
+      {{statusMessage}}
+    </template>
+    </div>
   </div>
 </template>
 <script type="application/dart" src="nel_sign_in.dart"></script>

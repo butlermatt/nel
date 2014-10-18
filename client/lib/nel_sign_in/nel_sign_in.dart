@@ -6,17 +6,20 @@ import 'package:paper_elements/paper_input.dart';
 import 'package:crypto/crypto.dart';
 
 import '../src/user.dart';
+import '../src/ajax.dart';
+import '../src/nel_object.dart';
 
 /**
  * A Polymer click counter element.
  */
 @CustomTag('nel-sign-in')
-class NelSignIn extends PolymerElement {
+class NelSignIn extends PolymerElement with Ajax {
   @observable bool createNew = false;
   @published User user;
 
   @observable String pass1 = '';
   @observable String pass2 = '';
+  @observable String statusMessage = '';
 
   User tmpUser;
 
@@ -26,12 +29,19 @@ class NelSignIn extends PolymerElement {
 
   // Existing user sign-in
   void signIn() {
+    statusMessage = '';
     var header = { 'Content-Type': 'application/json'};
     var data = JSON.encode(tmpUser.toJson());
-    HttpRequest.request('/signin', method: 'POST', sendData: data, requestHeaders: header)
-      .then((HttpRequest req) {
-        var map = JSON.decode(req.responseText);
-        print(map);
+
+    send('/signin', tmpUser).then((res) {
+      if(res is User) {
+        user = res;
+      }
+    }).catchError((e) {
+      statusMessage = e.message;
+    }, test: (e) => e is NelException)
+    .catchError((e) {
+      print(e);
     });
   }
 
@@ -42,20 +52,21 @@ class NelSignIn extends PolymerElement {
 
   // Create new user button.
   void newUser() {
+    statusMessage = '';
     bool warn = false;
     if(tmpUser.name.isEmpty) {
       warn = true;
-      // TODO: Warning on username
+      statusMessage += 'You must provide a username\n';
     }
 
     if(tmpUser.email.isEmpty) {
       warn = true;
-      // TODO: Warn on email
+      statusMessage += 'You must provide an email address';
     }
 
     if(pass1.isEmpty || pass1 != pass2) {
       warn = true;
-      // TODO: Warn on password.
+      statusMessage += 'Passwords do not match';
     } else {
       var sha = new SHA256()
           ..add(pass1.codeUnits)
@@ -64,7 +75,16 @@ class NelSignIn extends PolymerElement {
     }
 
     if(!warn) {
-      print(tmpUser.toJson());
+      send('/signin/new', tmpUser).then((res) {
+        if(res is User) {
+          user = res;
+        }
+      }).catchError((e) {
+        statusMessage = e.message;
+      }, test: (e) => e is NelException)
+      .catchError((e) {
+        print(e);
+      });
     }
 
   }
