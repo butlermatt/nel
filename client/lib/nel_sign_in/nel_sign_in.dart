@@ -47,6 +47,7 @@ class NelSignIn extends PolymerElement with Ajax {
 
   // Toggle to create new user screen
   void makeNew() {
+    statusMessage = '';
     createNew = true;
   }
 
@@ -90,6 +91,7 @@ class NelSignIn extends PolymerElement with Ajax {
   }
 
   void passChange(Event e, var detail, Node node) {
+    statusMessage = '';
     var tmpPass = (node as PaperInput).value;
     var sha = new SHA256();
     sha..add(tmpPass.codeUnits)
