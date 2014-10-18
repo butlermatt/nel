@@ -20,6 +20,9 @@ class NelSignin extends Vane {
           var objId = nelUser.remove('_id');
           nelUser['objId'] = objId.toHexString();
           nelUser.remove('password');
+          session['objId'] = nelUser['objId'];
+          session['name'] = nelUser['name'];
+          session['email'] = nelUser['email'];
           return close(nelUser);
         }
       });
@@ -63,6 +66,11 @@ class NelSignin extends Vane {
             usrCol.findOne(where.eq('name', map['name'])).then((usr) {
               usr.remove('password');
               log.info('Added user: $usr');
+              var objId = usr.remove('_id');
+              usr['objId'] = objId.toHexString();
+              session['objId'] = usr['objId'];
+              session['name'] = usr['name'];
+              session['email'] = usr['email'];
               return close(usr);
             });
           }
