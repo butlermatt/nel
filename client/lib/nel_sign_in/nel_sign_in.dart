@@ -35,9 +35,7 @@ class NelSignIn extends PolymerElement with Ajax {
 
     send('/signin', tmpUser).then((res) {
       print('signin/new received response: $res');
-      if(res is User) {
-        user = res;
-      }
+      user = res;
     }).catchError((e) {
       statusMessage = e.message;
     }, test: (e) => e is NelException)
