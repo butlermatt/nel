@@ -16,6 +16,7 @@ class Ajax {
                 requestHeaders: headers)
       .then((HttpRequest req) {
         var result = JSON.decode(req.responseText);
+        print('Send result: $result');
 
         if(result.containsKey('error')) {
           throw new NelException(result['error']);
