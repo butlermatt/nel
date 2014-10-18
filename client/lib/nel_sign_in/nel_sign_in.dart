@@ -77,6 +77,7 @@ class NelSignIn extends PolymerElement with Ajax {
 
     if(!warn) {
       send('/signin/new', tmpUser).then((res) {
+        print('signin/new received response: $res');
         if(res is User) {
           user = res;
         }
