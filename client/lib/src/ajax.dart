@@ -20,6 +20,8 @@ class Ajax {
         if(result.containsKey('error')) {
           throw new NelException(result['error']);
         }
+
+        return new NelObject.fromJson(result);
     });
   }
 }
