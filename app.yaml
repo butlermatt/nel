@@ -2,7 +2,6 @@ name: Nel-server
 
 server:
 # Hello backend
-- url: /hello
 - url: /signin
   match: regex
 
