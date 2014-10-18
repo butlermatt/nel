@@ -1,7 +1,6 @@
 part of nel.object;
 
 class NelNode extends NelObject {
-  String objId;
   String type = 'node';
   String title;
   String notes;
@@ -10,6 +9,11 @@ class NelNode extends NelObject {
 
   NelNode(String objId, this.title, this.notes, this.parents, this.children)
       : super(objId);
+
+  NelNode.empty() : super(null) {
+    children = new List();
+    title = notes = '';
+  }
 
   // TODO: This should not be so verbose. Transfer only changes.
   Map toJson() => {

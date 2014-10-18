@@ -17,4 +17,6 @@ class NelItem extends PolymerElement with Ajax {
 
   NelItem.created() : super.created();
 
+  // TODO: on changes fire event to trigger app to update on intervals
+
 }

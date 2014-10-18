@@ -7,13 +7,18 @@
 <link rel="import" href="../../../packages/core_elements/core_icons.html">
 <link rel="import" href="../../../packages/core_elements/core_input.html">
 
+<link rel="import" href="../nel_item/nel_item.html">
+
 <polymer-element name="nel-list" attributes="model">
 <template>
   <div layout vertical>
-    <core-input label="Title" value="{{model.title}}"></core-input>
-    <ul id="sublist">
-    </ul>
-    <paper-icon-button icon="add" on-click="{{addNode}}"></paper-icon-button>
+    <nel-item model="{{model}}"></nel-item>
+    <template repeat="{{subItem in subItems}}">
+      <ul id="sublist">
+        <li><nel-item model="{{subItem}}"></nel-item>
+      </ul>
+    </template>
+    <paper-icon-button icon="add" on-click="{{addNode}}" self-right></paper-icon-button>
   </div>
   <paper-shadow></paper-shadow>
 </template>

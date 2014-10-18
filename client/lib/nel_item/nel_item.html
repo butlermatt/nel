@@ -6,10 +6,16 @@
 <link rel="import" href="../../../packages/core_elements/core_icon.html">
 <link rel="import" href="../../../packages/core_elements/core_icons.html">
 
-<polymer-element name="nel-sign-in">
+<polymer-element name="nel-item" attributes="model">
 <template>
+<style>
+  /* core-input {
+    border-bottom-style: dotted;
+  } */
+</style>
 <div layout vertical>
   <core-input placehold="Title" value="{{model.title}}"></core-input>
+  <core-input multiline placeholder="Notes" value="{{model.notes}}" id="note"></core-input>
 </div>
 </template>
 <script type="application/dart" src="nel_item.dart"></script>

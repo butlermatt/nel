@@ -12,11 +12,16 @@ import '../src/ajax.dart';
 @CustomTag('nel-list')
 class NelList extends PolymerElement with Ajax {
   @published NelNode model;
+  @observable List<NelNode> subItems;
 
-  NelList.created() : super.created();
+  NelList.created() : super.created() {
+    subItems = toObservable([]);
+  }
 
   void addNode() {
     var contain = $['sublists'];
+
+    subItems.add(new NelNode.empty());
 
   }
 }
