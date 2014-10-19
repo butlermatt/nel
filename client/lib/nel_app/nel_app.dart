@@ -25,16 +25,16 @@ class NelApp extends PolymerElement with Ajax {
 
   void signedIn(Event e, var detail, Node node) {
     user = detail;
-    this.node = new NelNode(user.objId, 'Life of ${user.name}',
+    var tmpNode = new NelNode(user.objId, 'Life of ${user.name}',
         'The root of everything', [])
       ..isRoot = true;
 
-    manager.root = this.node;
+    manager.root = tmpNode;
 
     getAllNodes().then((list) {
       manager.addAll(list);
       print('Added nodes: $list');
-    });
+    }).then((_) => this.node = tmpNode);
   }
 
 }
