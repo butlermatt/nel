@@ -25,7 +25,8 @@ class NelRouter extends PolymerElement {
     loc = loc.substring(1).replaceAll('/', '');
     var model = manager.getNodeById(loc);
     if(model != null) {
-      fire('routeChange', detail: model);
+      print('Model found: ${model.objId}');
+      fire('routechange', detail: model);
     } else {
       print("Couldn't find model: $loc");
     }
