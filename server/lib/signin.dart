@@ -6,7 +6,7 @@ class NelSignin extends Vane {
 
   @Route('', method: 'POST')
   Future signIn() {
-    log.info('Login request for: ${json['name']}');
+    log.info('Login request for: ${json['username']}');
 
     mongodb.then((db) {
       var usrCol = db.collection('users');

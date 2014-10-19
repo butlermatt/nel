@@ -28,11 +28,8 @@ class NelSignIn extends PolymerElement with Ajax {
   // Existing user sign-in
   void signIn() {
     statusMessage = '';
-    var header = { 'Content-Type': 'application/json'};
-    var data = JSON.encode(tmpUser.toJson());
 
     send('/signin', tmpUser).then((res) {
-
       fire('signin', detail: res);
     }).catchError((e) {
       statusMessage = e.message;
