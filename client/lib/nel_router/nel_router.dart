@@ -22,7 +22,7 @@ class NelRouter extends PolymerElement {
     var loc = window.location.hash;
     print('Hashchange event. Location: $loc');
 
-    loc = loc.replaceAll('/', '');
+    loc = loc.substring(1).replaceAll('/', '');
     var model = manager.getNodeById(loc);
     if(model != null) {
       fire('routeChange', detail: model);
