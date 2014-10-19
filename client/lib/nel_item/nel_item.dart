@@ -31,7 +31,8 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void modelChanged(oldVal) {
-    subItems.addAll(model.children);
+    subItems..clear()
+        ..addAll(model.children);
   }
 
   // TODO: on changes fire event to trigger app to update on intervals
