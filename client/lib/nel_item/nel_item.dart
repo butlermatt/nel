@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:async';
 
 import 'package:polymer/polymer.dart';
 
@@ -18,6 +19,8 @@ class NelItem extends PolymerElement with Ajax {
 
   @ComputedProperty('subItems.isNotEmpty')
   bool get hasChildren => readValue(#hasChildren);
+
+  Timer updateTimer;
 
   NelItem.created() : super.created() {
     subItems = toObservable([]);
@@ -44,6 +47,15 @@ class NelItem extends PolymerElement with Ajax {
     $['notes'].classes.toggle('completed', true);
   }
 
+  void saveUpdate() {
+    if(model.objId == null || model.objId.isEmpty) {
+      send('/node/new', model).then((res) {
+        model.objId = res;
+        print('model id updated to: $res');
+      });
+    }
+  }
+
   ready() {
     super.ready();
     DivElement titleDiv = $['title'];
@@ -61,7 +73,6 @@ class NelItem extends PolymerElement with Ajax {
         ..onMouseLeave.listen(onContainerLeave);
 
   }
-
 
   void onTitleKeyDown(KeyboardEvent event) {
     if(event.keyCode == KeyCode.ENTER) { // TODO: Enter to create a new, same level bullet.
@@ -97,6 +108,9 @@ class NelItem extends PolymerElement with Ajax {
       model.title = targ.text.trim();
     }
     print('Model updated: ${model.toJson()}');
+
+    if(model.title.isNotEmpty)
+      updateTimer = new Timer(new Duration(seconds: 3), saveUpdate);
   }
 
   void onContainerEnter(MouseEvent event) {
@@ -108,6 +122,9 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void onDivFocus(Event event) {
+    if(updateTimer != null && updateTimer.isActive)
+      updateTimer.cancel();
+
     var target = event.target as DivElement;
     if(target.id == 'notes' && model.title.isEmpty) {
       $['title'].focus();

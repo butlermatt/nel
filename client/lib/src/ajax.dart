@@ -22,6 +22,8 @@ class Ajax {
           throw new NelException(result['error']);
         }
 
+        if(result['type'] == 'save') return result['objId'];
+
         return new NelObject.fromJson(result);
     });
   }

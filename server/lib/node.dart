@@ -20,7 +20,10 @@ class NelNode extends Vane {
       var nodeCol = db.collection('nodes');
       nodeCol.save(doc);
 
-      var res = { 'objId' : id.toHexString() };
+      var res = {
+                  'objId' : id.toHexString(),
+                  'type' : 'save'
+                };
       return close(res);
     });
   }
