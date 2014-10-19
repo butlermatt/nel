@@ -43,8 +43,10 @@ class ItemProvider {
       el.parents.forEach((var parId) {
         var par = items[parId];
         if(par == null) {
+          print('Adding to cache: ${el.toJson()}');
           cache.add(el);
         } else {
+          print('Adding to parent: ParID: ${par.objId}, child: ${el.objId}');
           par.children.add(el);
         }
       });
@@ -54,6 +56,7 @@ class ItemProvider {
       child.parents.forEach((var parId) {
         var par = items[parId];
         par.children.add(child);
+        print('Cache Adding to parent: ParID: ${par.objId}, child: ${child.objId}');
       });
     });
   }
