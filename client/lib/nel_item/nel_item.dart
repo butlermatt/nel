@@ -78,6 +78,7 @@ class NelItem extends PolymerElement with Ajax {
     block..onMouseEnter.listen(onContainerEnter)
         ..onMouseLeave.listen(onContainerLeave);
 
+    print('Model: $model');
     print('Model children: ${model.children}');
     subItems.addAll(model.children);
   }
