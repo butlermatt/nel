@@ -46,7 +46,6 @@ class ItemProvider {
           print('Adding to cache: ${el.toJson()}');
           cache.add(el);
         } else {
-          print('Adding to parent: ParID: ${par.objId}, child: ${el.objId}');
           par.children.add(el);
         }
       });

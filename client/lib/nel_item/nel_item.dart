@@ -31,8 +31,6 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void modelChanged(oldVal) {
-    print('Model: ${model.objId}');
-    print('Model children: ${model.children}');
     subItems.addAll(model.children);
   }
 
@@ -93,7 +91,6 @@ class NelItem extends PolymerElement with Ajax {
       model.title = $['title'].text;
       if(event.ctrlKey == true) {
         // Ctrl+Enter focus on notes.
-        print('Ctrl-enter hit!');
         $['notes'].focus();
       }
       if(event.shiftKey == true) {
