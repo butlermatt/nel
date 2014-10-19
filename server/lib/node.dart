@@ -18,7 +18,7 @@ class NelNode extends Vane {
       doc['user'] = session['objId'];
 
       var nodeCol = db.collection('nodes');
-      return nodeCol.save(doc).then((_) {
+      return nodeCol.insert(doc).then((_) {
         log.info('Saved data: $doc');
         var res = {
                     'objId' : id.toHexString(),
