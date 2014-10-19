@@ -1,19 +1,23 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../../packages/polymer/polymer.html">
+<link rel="import" href="../../../packages/paper_elements/paper_shadow.html">
+
 <link rel="import" href="../nel_sign_in/nel_sign_in.html">
-<link rel="import" href="../nel_list/nel_list.html">
+<link rel="import" href="../nel_item/nel_item.html">
 
 <polymer-element name="nel-app">
   <template>
     <style>
     #container {
+      width: 85%;
+      padding: 7px;
+    }
+    nel-item {
       width: 100%;
     }
-    nel-list {
-      width: 85%;
-    }
     </style>
-    <div layout horizontal center-justified id="container">
+    <div layout horizontal center-justified>
+    <div id="container">
    <!--   <template if="{{user == null}}">
         <div layout vertical>
           <h1>Never Ending List</h1>
@@ -27,8 +31,10 @@
 
       </template>
 
-      <nel-list model="{{node}}"></nel-list>
+      <nel-item model="{{node}}"></nel-item>
 
+      <paper-shadow></paper-shadow>
+    </div>
     </div>
   </template>
   <script type="application/dart" src="nel_app.dart"></script>
