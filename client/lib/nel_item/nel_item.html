@@ -91,12 +91,14 @@
     </paper-fab>
   </div>
   </div>
+  <template if="{{hasChildren}}">
   <ul id="sublist">
   <!-- holy crap this works!! -->
   <template repeat="{{subItem in subItems}}">
       <li><nel-item model="{{subItem}}"></nel-item></li>
   </template>
   </ul>
+  </template>
 
 </div>
 </template>

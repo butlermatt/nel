@@ -19,6 +19,9 @@ class NelItem extends PolymerElement with Ajax {
   @ComputedProperty('model.completed')
   bool get completed => readValue(#completed);
 
+  @ComputedProperty('subItems.isNotEmpty')
+  bool get hasChildren => readValue(#hasChildren);
+
   NelItem.created() : super.created() {
     subItems = toObservable([]);
   }
@@ -27,6 +30,7 @@ class NelItem extends PolymerElement with Ajax {
   void addNode() {
     if(model.title.isNotEmpty) {
       subItems.add(new NelNode.empty());
+//      notifyPropertyChange(#hasChildren, null, true);
     }
 //    $['addButton'].classes.toggle('hideme');
     // TODO: Not here, but holy crapy, recursive polymer elements work!
