@@ -2,11 +2,12 @@ part of nel.object;
 
 class User extends NelObject {
   String type = 'user';
+  String username;
   String name;
   String email;
   String password;
 
-  User(String objId, this.name, this.email) : super(objId);
+  User(String objId, this.username, this.name, this.email) : super(objId);
   User.empty() : super('') {
     name = email = password = '';
   }
@@ -15,6 +16,7 @@ class User extends NelObject {
     var ret = {
       'type' : type,
       'objId' : objId,
+      'username' : username,
       'name' : name,
       'email' : email
     };

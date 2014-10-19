@@ -24,6 +24,7 @@
   <div layout vertical around-justified id="box">
     <template if="{{createNew}}">
       Create new User
+      <paper-input label="Username" floatingLabel value="{{tmpUser.username}}"></paper-input>
       <paper-input label="Username" floatingLabel value="{{tmpUser.name}}"></paper-input>
       <paper-input type="email" label="Email Address" floatingLabel value="{{tmpUser.email}}"></paper-input>
       <paper-input type="password" label="Password" floatingLabel value="{{pass1}}"></paper-input>

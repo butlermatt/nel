@@ -14,7 +14,7 @@ abstract class NelObject {
     NelObject obj;
     switch(ty) {
       case 'user':
-        obj = new User(json['objId'], json['name'], json['email']);
+        obj = new User(json['objId'], json['username'], json['name'], json['email']);
         break;
       case 'node':
         obj = new NelNode(json['objId'],

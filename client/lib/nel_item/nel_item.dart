@@ -1,9 +1,6 @@
 import 'dart:html';
-import 'dart:convert';
 
 import 'package:polymer/polymer.dart';
-import 'package:paper_elements/paper_input.dart';
-import 'package:crypto/crypto.dart';
 
 import '../src/ajax.dart';
 import '../src/nel_object.dart';
@@ -30,9 +27,7 @@ class NelItem extends PolymerElement with Ajax {
   void addNode() {
     if(model.title.isNotEmpty) {
       subItems.add(new NelNode.empty());
-//      notifyPropertyChange(#hasChildren, null, true);
     }
-//    $['addButton'].classes.toggle('hideme');
     // TODO: Not here, but holy crapy, recursive polymer elements work!
   }
 
@@ -63,7 +58,6 @@ class NelItem extends PolymerElement with Ajax {
 
     DivElement block = $['block'];
     block..onMouseEnter.listen(onContainerEnter)
-    //DivElement container = $['container'];
         ..onMouseLeave.listen(onContainerLeave);
 
   }
