@@ -37,6 +37,7 @@ class NelApp extends PolymerElement with Ajax {
   }
 
   void routeChanged(Event e, var detail, Node node) {
+    print('Route change received. Detail: ${detail.objId}');
     this.node = detail;
   }
 
