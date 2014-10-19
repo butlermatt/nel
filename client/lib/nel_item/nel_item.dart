@@ -63,6 +63,10 @@ class NelItem extends PolymerElement with Ajax {
         model.objId = res;
         print('model id updated to: $res');
       });
+    } else {
+      send('/node/${model.objId}', model).then((res) {
+        print('Update successful');
+      });
     }
   }
 
