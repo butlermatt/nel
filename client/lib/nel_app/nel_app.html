@@ -4,6 +4,7 @@
 
 <link rel="import" href="../nel_sign_in/nel_sign_in.html">
 <link rel="import" href="../nel_item/nel_item.html">
+<link rel="import" href="../nel_router/nel_router.html">
 
 <polymer-element name="nel-app">
   <template>
@@ -27,8 +28,9 @@
 
     <template if="{{user != null}}">
     <div id="container">
-        <!-- TODO: it -->
-        <nel-item model="{{node}}"></nel-item>
+      <nel-router on-routeChange="{{routeChanged}}"></nel-router>
+      <!-- TODO: it -->
+      <nel-item model="{{node}}"></nel-item>
 
       <paper-shadow></paper-shadow>
     </div>

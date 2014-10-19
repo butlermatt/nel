@@ -59,6 +59,7 @@
   <div>
     <template if="{{!model.isRoot}}">
     <paper-menu-button icon="arrow-drop-down-circle">
+      <paper-item><a _href="#/{{model.objId}}/">Focus</a></paper-item>
       <paper-item on-tap="{{completeNode}}">Complete</paper-item>
       <paper-item on-tap="{{removeNode}}">Delete</paper-item>
     </paper-menu-button>
