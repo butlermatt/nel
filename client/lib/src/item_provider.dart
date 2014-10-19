@@ -54,8 +54,10 @@ class ItemProvider {
     cache.forEach((var child) {
       child.parents.forEach((var parId) {
         var par = items[parId];
-        par.children.add(child);
-        print('Cache Adding to parent: ParID: ${par.objId}, child: ${child.objId}');
+        if(par != null) {
+          par.children.add(child);
+          print('Cache Adding to parent: ParID: ${par.objId}, child: ${child.objId}');
+        }
       });
     });
   }

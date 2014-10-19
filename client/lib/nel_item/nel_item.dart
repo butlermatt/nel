@@ -50,6 +50,8 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void removeNode() {
+    // TODO: Delete children :(
+    // Fire command to server too.
     if(model.title.isNotEmpty) {
       model = null;
     }
