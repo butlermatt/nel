@@ -93,7 +93,8 @@ class NelNode extends Vane {
       return nodeCol.update(where.eq('_id', id),
           modify.set('title', json['title'])
           .set('notes', json['notes'])
-          .set('parents', json['parents']));
+          .set('parents', json['parents'])
+          .set('completed', json['completed']));
     }).then((_) {
       var ret = { 'objId' : nodeId,
               'type' : 'save'
