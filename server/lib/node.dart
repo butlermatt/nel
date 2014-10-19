@@ -27,4 +27,30 @@ class NelNode extends Vane {
       return close(res);
     });
   }
+
+  @Route('/{nodeId}', method: 'GET')
+  Future getNode(String nodeId) {
+    if(session['objId'] == null) {
+      var ret = {'error' : 'Session Timed Out',
+                 'code' : 401 };
+      return close(ret);
+    }
+
+    return mongodb.then((db) {
+      var nodeCol = db.collection('nodes');
+      var id = ObjectId.parse(nodeId);
+      return nodeCol.findOne(where.eq('_id', id)).then((res) {
+        if(res == null) {
+          // no result found
+          var ret = { 'error' : 'Node not found',
+                    'code' : 404 };
+          return close(ret);
+        }
+
+        ObjectId objId = res.remove('_id');
+        res['objId'] = objId.toHexString();
+        return close(res);
+      });
+    });
+  }
 }
