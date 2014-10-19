@@ -64,7 +64,7 @@ class NelItem extends PolymerElement with Ajax {
 
   void toggleSublist() {
     collapse = !collapse;
-    $['sublist'].classes.toggle('hideme');
+    $['sublist'].classes.toggle('hideme', true);
   }
 
   void saveUpdate() {
