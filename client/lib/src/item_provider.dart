@@ -36,4 +36,9 @@ class ItemProvider {
     items[node.objId] = node;
   }
 
+  void addAll(List nodes) {
+    nodes.forEach((el) { items[el.objId] = el; });
+    // Need to associate nodes as well ?
+  }
+
 }

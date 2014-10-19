@@ -30,7 +30,10 @@ class NelApp extends PolymerElement with Ajax {
       ..isRoot = true;
 
     manager.root = this.node;
-    // Get all nodes for this user.
+    getAllNodes().then((list) {
+      manager.addAll(list);
+      print('Added nodes: $list');
+    });
   }
 
 }

@@ -43,4 +43,18 @@ class Ajax {
       return new NelObject.fromJson(result);
     });
   }
+
+  Future getAllNodes() {
+    var url = '/node/list';
+    return HttpRequest.request(url, method: 'GET').then((HttpRequest req) {
+      var result = JSON.decode(req.responseText);
+      if(result.first.containsKey('error')) {
+        var errDoc = result.first;
+        var up = new NelException(errDoc['error']);
+        throw up;
+      }
+
+      return result.map((el) => new NelObject.fromJson(el)).toList();
+    });
+  }
 }
