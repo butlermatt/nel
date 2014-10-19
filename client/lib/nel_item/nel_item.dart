@@ -5,6 +5,7 @@ import 'package:polymer/polymer.dart';
 
 import '../src/ajax.dart';
 import '../src/nel_object.dart';
+import '../src/item_provider.dart';
 
 /**
  * A Polymer click counter element.
@@ -22,8 +23,11 @@ class NelItem extends PolymerElement with Ajax {
 
   Timer updateTimer;
 
+  ItemProvider _manager;
+
   NelItem.created() : super.created() {
     subItems = toObservable([]);
+    _manager = new ItemProvider();
   }
 
   // TODO: on changes fire event to trigger app to update on intervals
@@ -74,6 +78,7 @@ class NelItem extends PolymerElement with Ajax {
     block..onMouseEnter.listen(onContainerEnter)
         ..onMouseLeave.listen(onContainerLeave);
 
+    subItems.addAll(model.children);
   }
 
   void onTitleKeyDown(KeyboardEvent event) {

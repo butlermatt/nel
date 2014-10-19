@@ -37,8 +37,25 @@ class ItemProvider {
   }
 
   void addAll(List nodes) {
-    nodes.forEach((el) { items[el.objId] = el; });
-    // Need to associate nodes as well ?
+    var cache = [];
+    nodes.forEach((el) {
+      items[el.objId] = el;
+      el.parents.forEach((var parId) {
+        var par = items[parId];
+        if(par == null) {
+          cache.add(el);
+        } else {
+          par.children.add(el);
+        }
+      });
+    });
+
+    cache.forEach((var child) {
+      child.parents.forEach((var parId) {
+        var par = items[parId];
+        par.children.add(child);
+      });
+    });
   }
 
 }

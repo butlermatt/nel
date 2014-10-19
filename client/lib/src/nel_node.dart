@@ -14,7 +14,7 @@ class NelNode extends NelObject {
 
   NelNode.empty() : super(null) {
     children = new List();
-    parents= new List();
+    parents = new List();
     title = notes = '';
   }
 
@@ -24,7 +24,7 @@ class NelNode extends NelObject {
     'objId' : objId,
     'title' : title,
     'notes' : notes,
-    'parents': parents,
-    'children': children
+    'parents': parents
+//    'children': children
   };
 }
