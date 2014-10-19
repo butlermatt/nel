@@ -13,23 +13,50 @@
   .placeholder {
     color: #777;
   }
+
+  #title {
+    font-size: 18px;
+  }
+
+  #notes {
+    font-size: 16px;
+    padding-left: 5px;
+  }
+
+  .hideme {
+    display: none;
+  }
+
+  li > nel-item {
+    display: inline-block;
+  }
 </style>
-<div layout vertical>
-  <div contenteditable="true" id="title">
-  <template if="{{model.title.isNotEmpty}}">
-    {{model.title}}
-  </template>
-  <template if="{{model.title.isEmpty}}">
-    <span class="placeholder">Title</span>
-  </template>
-  </div>
-  <div contenteditable="true" id="notes">
-  <template if="{{model.notes.isNotEmpty}}">
-    {{model.notes}}
-  </template>
-  <template if="{{model.notes.isEmpty}}">
-    <span class="placeholder">Notes</span>
-  </template>
+<div layout vertical id="container">
+  <div id="block">
+    <div contenteditable="true" id="title">
+    <template if="{{model.title.isNotEmpty}}">
+      {{model.title}}
+    </template>
+    <template if="{{model.title.isEmpty}}">
+      <span class="placeholder">Title</span>
+    </template>
+    </div>
+    <div contenteditable="true" id="notes">
+    <template if="{{model.notes.isNotEmpty}}">
+      {{model.notes}}
+    </template>
+    <template if="{{model.notes.isEmpty}}">
+      <span class="placeholder">Notes</span>
+    </template>
+    </div>
+    <!-- Replace this with something good. Keyboard shortcuts -->
+  <paper-icon-button
+    icon="add"
+    on-click="{{addNode}}"
+    self-right
+    class="hideme"
+    id="addButton">
+  </paper-icon-button>
   </div>
   <template repeat="{{subItem in subItems}}">
     <ul id="sublist">
@@ -37,8 +64,7 @@
       <li><nel-item model="{{subItem}}"></nel-item>
     </ul>
   </template>
-  <!-- Replace this with something good. Keyboard shortcuts -->
-  <paper-icon-button icon="add" on-click="{{addNode}}" self-right></paper-icon-button>
+
 </div>
 </template>
 <script type="application/dart" src="nel_item.dart"></script>

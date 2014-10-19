@@ -23,18 +23,27 @@ class NelItem extends PolymerElement with Ajax {
   // TODO: on changes fire event to trigger app to update on intervals
   void addNode() {
     subItems.add(new NelNode.empty());
+    $['addButton'].classes.toggle('hideme');
     // TODO: Not here, but holy crapy, recursive polymer elements work!
   }
 
   ready() {
     super.ready();
     DivElement titleDiv = $['title'];
-    titleDiv.onKeyDown.listen(onTitleKeyDown);
-    titleDiv.onBlur.listen(onDivBlur);
+    titleDiv..onKeyDown.listen(onTitleKeyDown)
+        ..onBlur.listen(onDivBlur)
+        ..onFocus.listen(onDivFocus);
 
     DivElement notesDiv = $['notes'];
-    notesDiv.onKeyDown.listen(onNotesKeyDown);
-    notesDiv.onBlur.listen(onDivBlur);
+    notesDiv..onKeyDown.listen(onNotesKeyDown)
+        ..onBlur.listen(onDivBlur)
+        ..onFocus.listen(onDivFocus);
+
+    DivElement block = $['block'];
+    block.onMouseEnter.listen(onContainerEnter);
+    DivElement container = $['container'];
+    container.onMouseLeave.listen(onContainerLeave);
+
   }
 
 
@@ -67,10 +76,27 @@ class NelItem extends PolymerElement with Ajax {
   void onDivBlur(Event event) {
     var targ = event.target;
     if(targ.id == 'notes') {
-      model.notes = targ.text.trim(); // TODO: need to replace new lines
+      model.notes = targ.innerHtml.toString().replaceAll(r'<br>', '\n');
     } else if(targ.id == 'title') {
       model.title = targ.text.trim();
     }
     print('Model updated: ${model.toJson()}');
+  }
+
+  void onContainerEnter(MouseEvent event) {
+    $['addButton'].classes.toggle('hideme');
+  }
+
+  void onContainerLeave(MouseEvent event) {
+    $['addButton'].classes.toggle('hideme');
+  }
+
+  void onDivFocus(Event event) {
+    var target = event.target as DivElement;
+    if((target.id == 'notes' && model.notes.isEmpty) ||
+        (target.id == 'title' && model.title.isEmpty)) {
+      target.children.clear();
+      target.focus();
+    }
   }
 }
