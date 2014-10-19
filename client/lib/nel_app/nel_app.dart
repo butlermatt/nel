@@ -16,13 +16,7 @@ class NelApp extends PolymerElement with Ajax {
 
   @observable List<NelNode> nelNodes;
 
-  NelApp.created() : super.created() {
-    // Temp
-////    user = new User('1', 'mbutler', 'mbutler@seaside.ns.ca');
-//    this.node = new NelNode(user.objId, 'Life of ${user.name}',
-//        "You're at the top", null, null);
-//    this.node.isRoot = true;
-  }
+  NelApp.created() : super.created();
 
   void signedIn(Event e, var detail, Node node) {
     user = detail;

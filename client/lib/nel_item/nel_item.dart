@@ -109,7 +109,9 @@ class NelItem extends PolymerElement with Ajax {
 
   void onDivFocus(Event event) {
     var target = event.target as DivElement;
-    if((target.id == 'notes' && model.notes.isEmpty) ||
+    if(target.id == 'notes' && model.title.isEmpty) {
+      $['title'].focus();
+    } else if((target.id == 'notes' && model.notes.isEmpty) ||
         (target.id == 'title' && model.title.isEmpty)) {
       target.children.clear();
       target.focus();
