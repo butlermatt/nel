@@ -35,6 +35,7 @@
 
   ul {
     list-style-type: none;
+    margin: 0px;
   }
 
   li > nel-item {
@@ -58,7 +59,7 @@
   <div layout horizontal id="block">
   <div>
     <template if="{{!model.isRoot}}">
-    <paper-menu-button icon="arrow-drop-down-circle">
+    <paper-menu-button icon="drawer">
       <paper-item label="Focus"><a _href="#/{{model.objId}}/"></a></paper-item>
       <paper-item label="Complete" on-tap="{{completeNode}}"></paper-item>
       <paper-item label="Delete" on-tap="{{removeNode}}"></paper-item>
