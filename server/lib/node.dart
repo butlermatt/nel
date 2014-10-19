@@ -18,13 +18,14 @@ class NelNode extends Vane {
       doc['user'] = session['objId'];
 
       var nodeCol = db.collection('nodes');
-      nodeCol.save(doc);
-
-      var res = {
-                  'objId' : id.toHexString(),
-                  'type' : 'save'
-                };
-      return close(res);
+      return nodeCol.save(doc).then((_) {
+        log.info('Saved data: $doc');
+        var res = {
+                    'objId' : id.toHexString(),
+                    'type' : 'save'
+                  };
+        return close(res);
+      });
     });
   }
 
