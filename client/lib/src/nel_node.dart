@@ -9,8 +9,10 @@ class NelNode extends NelObject {
   bool isRoot = false;
   bool completed = false;
 
-  NelNode(String objId, this.title, this.notes, this.parents, this.children)
-      : super(objId);
+  NelNode(String objId, this.title, this.notes, this.parents)
+      : super(objId) {
+    children = new List();
+  }
 
   NelNode.empty() : super(null) {
     children = new List();

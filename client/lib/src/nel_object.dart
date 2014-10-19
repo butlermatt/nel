@@ -20,8 +20,7 @@ abstract class NelObject {
         obj = new NelNode(json['objId'],
             json['title'],
             json['notes'],
-            json['parents'],
-            json['children']);
+            json['parents']);
         break;
       default:
         throw new ArgumentError('Invalid NelObject type: $ty');
