@@ -17,7 +17,7 @@ class NelItem extends PolymerElement with Ajax {
   @observable bool collapse = false;
 
   @observable
-  String get subIcon => collapse ? 'add-circle' : 'remove-circle';
+  String get subIcon => collapse ? 'remove-circle' : 'add-circle';
 
   @ComputedProperty('model.completed')
   bool get completed => readValue(#completed);
