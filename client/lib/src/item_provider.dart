@@ -39,7 +39,7 @@ class ItemProvider {
   void addAll(List nodes) {
     var cache = [];
     nodes.forEach((el) {
-      items[el.objId] = el;
+      add(el);
       el.parents.forEach((var parId) {
         var par = items[parId];
         if(par == null) {
