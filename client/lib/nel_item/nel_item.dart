@@ -136,6 +136,7 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void onContainerEnter(MouseEvent event) {
+    $['block'].classes.toggle('highlight');
     $['buttonControl'].classes.toggle('hideme');
   }
 
