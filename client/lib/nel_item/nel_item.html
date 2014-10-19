@@ -95,7 +95,7 @@
     </paper-fab>
   </div>
   </div>
-  <template if="{{hasChildren}}">
+  <template if="{{hasChildren && !collapse}}">
   <ul id="sublist">
   <!-- holy crap this works!! -->
   <template repeat="{{subItem in subItems}}">
