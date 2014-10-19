@@ -56,6 +56,7 @@ class NelNode extends Vane {
 
   @Route('/list', method: 'GET')
   Future getNodes() {
+    log.info('Query request for user: "${session['objId']}" (${session['username']})');
     var usrId = session['objId'];
     if(usrId == null) {
       var ret = { 'error' : 'Session Timed Out',
@@ -69,6 +70,7 @@ class NelNode extends Vane {
       var docs;
       return nodeCol.find({'user' : usrId}).forEach((Map doc) {
         docs.add(doc);
+        log.info('Docs: $docs');
       }).then((_) => close(docs));
     });
   }
