@@ -30,6 +30,12 @@ class NelItem extends PolymerElement with Ajax {
     _manager = new ItemProvider();
   }
 
+  void modelChanged(oldVal) {
+    print('Model: ${model.objId}');
+    print('Model children: ${model.children}');
+    subItems.addAll(model.children);
+  }
+
   // TODO: on changes fire event to trigger app to update on intervals
   void addNode() {
     if(model.title.isNotEmpty) {
@@ -78,9 +84,6 @@ class NelItem extends PolymerElement with Ajax {
     block..onMouseEnter.listen(onContainerEnter)
         ..onMouseLeave.listen(onContainerLeave);
 
-    print('Model: ${model.objId}');
-    print('Model children: ${model.children}');
-    subItems.addAll(model.children);
   }
 
   void onTitleKeyDown(KeyboardEvent event) {
