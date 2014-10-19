@@ -11,7 +11,7 @@ class NelSignin extends Vane {
     mongodb.then((db) {
       var usrCol = db.collection('users');
 
-      usrCol.findOne(where.eq('name', json['name'])
+      usrCol.findOne(where.eq('username', json['username'])
                     .and(where.eq('password', json['password'])))
         .then((nelUser) {
         if(nelUser == null) {
@@ -21,6 +21,7 @@ class NelSignin extends Vane {
           nelUser['objId'] = objId.toHexString();
           nelUser.remove('password');
           session['objId'] = nelUser['objId'];
+          session['username'] = nelUser['username'];
           session['name'] = nelUser['name'];
           session['email'] = nelUser['email'];
           return close(nelUser);
@@ -46,14 +47,14 @@ class NelSignin extends Vane {
     mongodb.then((db) {
       var usrCol = db.collection('users');
 
-      usrCol.findOne(where.eq('name', json['name'])
+      usrCol.findOne(where.eq('username', json['username'])
                     .or(where.eq('email', json['email'])))
         .then((res) {
 
           if(res != null) {
             var error =  {};
-            if(res['name'] == json['name']) {
-              error['error'] = 'A user already exists with that name';
+            if(res['username'] == json['username']) {
+              error['error'] = 'A user with that name already exists';
             } else {
               error['error'] = 'A user has already signed up with that email account';
             }
@@ -63,12 +64,13 @@ class NelSignin extends Vane {
             var map = json as Map;
             map.remove('objId');
             usrCol.insert(map);
-            usrCol.findOne(where.eq('name', map['name'])).then((usr) {
+            usrCol.findOne(where.eq('username', map['username'])).then((usr) {
               usr.remove('password');
               log.info('Added user: $usr');
               var objId = usr.remove('_id');
               usr['objId'] = objId.toHexString();
               session['objId'] = usr['objId'];
+              session['username'] = usr['username'];
               session['name'] = usr['name'];
               session['email'] = usr['email'];
               return close(usr);

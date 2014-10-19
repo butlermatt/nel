@@ -25,7 +25,7 @@
     <template if="{{createNew}}">
       Create new User
       <paper-input label="Username" floatingLabel value="{{tmpUser.username}}"></paper-input>
-      <paper-input label="Username" floatingLabel value="{{tmpUser.name}}"></paper-input>
+      <paper-input label="Your Name" floatingLabel value="{{tmpUser.name}}"></paper-input>
       <paper-input type="email" label="Email Address" floatingLabel value="{{tmpUser.email}}"></paper-input>
       <paper-input type="password" label="Password" floatingLabel value="{{pass1}}"></paper-input>
       <paper-input type="password" label="Confirm Password" floatingLabel value="{{pass2}}"></paper-input>
@@ -35,7 +35,7 @@
     </paper-button>
     </template>
     <template if="{{!createNew}}">
-    <paper-input label="Username" floatingLabel value="{{tmpUser.name}}"></paper-input>
+    <paper-input label="Username" floatingLabel value="{{tmpUser.username}}"></paper-input>
     <paper-input label="Password" type="password" on-change="{{passChange}}"></paper-input>
     <div layout horizontal around-justify>
     <paper-button raised class="colored" on-click="{{signIn}}">

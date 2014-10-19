@@ -3,6 +3,7 @@ name: Nel-server
 server:
 # Hello backend
 - url: /signin
+- url: /node
   match: regex
 
 client:
