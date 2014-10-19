@@ -16,15 +16,33 @@ class NelItem extends PolymerElement with Ajax {
   @published NelNode model;
   @observable List<NelNode> subItems;
 
+  @ComputedProperty('model.completed')
+  bool get completed => readValue(#completed);
+
   NelItem.created() : super.created() {
     subItems = toObservable([]);
   }
 
   // TODO: on changes fire event to trigger app to update on intervals
   void addNode() {
-    subItems.add(new NelNode.empty());
-    $['addButton'].classes.toggle('hideme');
+    if(model.title.isNotEmpty) {
+      subItems.add(new NelNode.empty());
+    }
+//    $['addButton'].classes.toggle('hideme');
     // TODO: Not here, but holy crapy, recursive polymer elements work!
+  }
+
+  void removeNode() {
+    if(model.title.isNotEmpty) {
+      model = null;
+    }
+    this.parent.remove();
+  }
+
+  void completeNode() {
+    model.completed = true;
+    $['title'].classes.toggle('completed', true);
+    $['notes'].classes.toggle('completed', true);
   }
 
   ready() {
@@ -40,9 +58,9 @@ class NelItem extends PolymerElement with Ajax {
         ..onFocus.listen(onDivFocus);
 
     DivElement block = $['block'];
-    block.onMouseEnter.listen(onContainerEnter);
-    DivElement container = $['container'];
-    container.onMouseLeave.listen(onContainerLeave);
+    block..onMouseEnter.listen(onContainerEnter)
+    //DivElement container = $['container'];
+        ..onMouseLeave.listen(onContainerLeave);
 
   }
 
@@ -84,11 +102,11 @@ class NelItem extends PolymerElement with Ajax {
   }
 
   void onContainerEnter(MouseEvent event) {
-    $['addButton'].classes.toggle('hideme');
+    $['buttonControl'].classes.toggle('hideme');
   }
 
   void onContainerLeave(MouseEvent event) {
-    $['addButton'].classes.toggle('hideme');
+    $['buttonControl'].classes.toggle('hideme');
   }
 
   void onDivFocus(Event event) {

@@ -2,7 +2,9 @@
 <link rel="import" href="../../../packages/polymer/polymer.html">
 <link rel="import" href="../../../packages/core_elements/core_input.html">
 <link rel="import" href="../../../packages/paper_elements/paper_button.html">
-<link rel="import" href="../../../packages/paper_elements/paper_icon_button.html">
+<link rel="import" href="../../../packages/paper_elements/paper_fab.html">
+<link rel="import" href="../../../packages/paper_elements/paper_item.html">
+<link rel="import" href="../../../packages/paper_elements/paper_menu_button.html">
 <link rel="import" href="../../../packages/paper_elements/paper_shadow.html">
 <link rel="import" href="../../../packages/core_elements/core_icon.html">
 <link rel="import" href="../../../packages/core_elements/core_icons.html">
@@ -20,20 +22,50 @@
 
   #notes {
     font-size: 16px;
-    padding-left: 5px;
+    margin-left: 10px;
   }
 
   .hideme {
     display: none;
   }
 
+  .completed {
+    text-decoration: line-through;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
   li > nel-item {
     display: inline-block;
+    width: 100%;
+  }
+
+  paper-menu-button {
+    color: #c32712;
+  }
+
+  paper-menu-button::shadow .paper-menu-button-overlay-bg {
+    background: #c32712;
+  }
+
+  paper-menu-button:shadow .paper-menu-button-overlay-ink {
+    background: red;
   }
 </style>
 <div layout vertical id="container">
-  <div id="block">
-    <div contenteditable="true" id="title">
+  <div layout horizontal id="block">
+  <div>
+    <template if="{{!model.isRoot}}">
+    <paper-menu-button icon="arrow-drop-down-circle">
+      <paper-item on-tap="{{completeNode}}">Complete</paper-item>
+      <paper-item on-tap="{{removeNode}}">Delete</paper-item>
+    </paper-menu-button>
+    </template>
+  </div>
+  <div flex>
+    <div flex contenteditable="true" id="title">
     <template if="{{model.title.isNotEmpty}}">
       {{model.title}}
     </template>
@@ -41,7 +73,7 @@
       <span class="placeholder">Title</span>
     </template>
     </div>
-    <div contenteditable="true" id="notes">
+    <div flex contenteditable="true" id="notes">
     <template if="{{model.notes.isNotEmpty}}">
       {{model.notes}}
     </template>
@@ -50,20 +82,21 @@
     </template>
     </div>
     <!-- Replace this with something good. Keyboard shortcuts -->
-  <paper-icon-button
-    icon="add"
-    on-click="{{addNode}}"
-    self-right
-    class="hideme"
-    id="addButton">
-  </paper-icon-button>
+
   </div>
+  <div self-right class="hideme" id="buttonControl">
+    <paper-fab mini
+      icon="add"
+      on-tap="{{addNode}}">
+    </paper-fab>
+  </div>
+  </div>
+  <ul id="sublist">
+  <!-- holy crap this works!! -->
   <template repeat="{{subItem in subItems}}">
-    <ul id="sublist">
-    <!-- holy crap this works!! -->
-      <li><nel-item model="{{subItem}}"></nel-item>
-    </ul>
+      <li><nel-item model="{{subItem}}"></nel-item></li>
   </template>
+  </ul>
 
 </div>
 </template>

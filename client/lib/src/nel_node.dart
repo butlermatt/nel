@@ -6,6 +6,8 @@ class NelNode extends NelObject {
   String notes;
   List parents;
   List children;
+  bool isRoot = false;
+  bool completed = false;
 
   NelNode(String objId, this.title, this.notes, this.parents, this.children)
       : super(objId);
