@@ -4,6 +4,7 @@
 <link rel="import" href="../../../packages/paper_elements/paper_button.html">
 <link rel="import" href="../../../packages/paper_elements/paper_fab.html">
 <link rel="import" href="../../../packages/paper_elements/paper_item.html">
+<link rel="import" href="../../../packages/paper_elements/paper_icon_button.html">
 <link rel="import" href="../../../packages/paper_elements/paper_menu_button.html">
 <link rel="import" href="../../../packages/paper_elements/paper_shadow.html">
 <link rel="import" href="../../../packages/core_elements/core_icon.html">
@@ -59,7 +60,8 @@
   <div layout horizontal id="block">
   <div>
     <template if="{{!model.isRoot}}">
-    <paper-menu-button icon="drawer">
+    <paper-icon-button icon="{{subIcon}}" on-tap="{{toggleSublist}}"></paper-icon-button>
+    <paper-menu-button icon="check-circle-blank">
       <paper-item label="Focus"><a _href="#/{{model.objId}}/"></a></paper-item>
       <paper-item label="Complete" on-tap="{{completeNode}}"></paper-item>
       <paper-item label="Delete" on-tap="{{removeNode}}"></paper-item>

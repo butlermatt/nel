@@ -14,6 +14,10 @@ import '../src/item_provider.dart';
 class NelItem extends PolymerElement with Ajax {
   @published NelNode model;
   @observable List<NelNode> subItems;
+  @observable bool collapse = false;
+
+  @observable
+  String get subIcon => collapse ? 'add-circle' : 'remove-circle';
 
   @ComputedProperty('model.completed')
   bool get completed => readValue(#completed);
@@ -56,6 +60,11 @@ class NelItem extends PolymerElement with Ajax {
     model.completed = true;
     $['title'].classes.toggle('completed', true);
     $['notes'].classes.toggle('completed', true);
+  }
+
+  void toggleSublist() {
+    collapse = !collapse;
+    $['sublist'].classes.toggle('hideme');
   }
 
   void saveUpdate() {
