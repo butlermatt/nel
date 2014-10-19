@@ -29,7 +29,9 @@ class NelItem extends PolymerElement with Ajax {
   // TODO: on changes fire event to trigger app to update on intervals
   void addNode() {
     if(model.title.isNotEmpty) {
-      subItems.add(new NelNode.empty());
+      var newNode = new NelNode.empty()
+          ..parents.add(model.objId);
+      subItems.add(newNode);
     }
     // TODO: Not here, but holy crapy, recursive polymer elements work!
   }
@@ -128,7 +130,8 @@ class NelItem extends PolymerElement with Ajax {
     var target = event.target as DivElement;
     if(target.id == 'notes' && model.title.isEmpty) {
       $['title'].focus();
-    } else if((target.id == 'notes' && model.notes.isEmpty) ||
+    }
+    if((target.id == 'notes' && model.notes.isEmpty) ||
         (target.id == 'title' && model.title.isEmpty)) {
       target.children.clear();
       target.focus();

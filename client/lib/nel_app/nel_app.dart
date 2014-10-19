@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:polymer/polymer.dart';
 import '../src/nel_object.dart';
 import '../src/ajax.dart';
+import '../src/item_provider.dart';
 
 /**
  * A Polymer click counter element.
@@ -16,13 +17,19 @@ class NelApp extends PolymerElement with Ajax {
 
   @observable List<NelNode> nelNodes;
 
-  NelApp.created() : super.created();
+  ItemProvider manager;
+
+  NelApp.created() : super.created() {
+    manager = new ItemProvider();
+  }
 
   void signedIn(Event e, var detail, Node node) {
     user = detail;
     this.node = new NelNode(user.objId, 'Life of ${user.name}',
         'The root of everything', null, null)
       ..isRoot = true;
+
+    manager.root = this.node;
     // Get all nodes for this user.
   }
 
