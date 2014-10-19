@@ -66,13 +66,13 @@ class NelNode extends Vane {
       return close(ret);
     }
 
+    var docs = [];
     return mongodb.then((db) {
       var nodeCol = db.collection('nodes');
-      var docs;
-      return nodeCol.find({'user' : usrId}).forEach((Map doc) {
+      return nodeCol.find(where.eq('user',usrId)).forEach((Map doc) {
         docs.add(doc);
         log.info('Docs: $docs');
-      }).then((_) => close(docs));
-    });
+      });
+    }).then((_) => close(docs));
   }
 }
